@@ -154,3 +154,11 @@ input:checked[type="checkbox"]:before{
 .bi.bi-linkedin{
     font-size:40px;
 }
+
+.item-esq{
+    float: left;
+}
+
+.item-dir{
+    float: right;
+}
