@@ -7,7 +7,8 @@ var alunoFields = {
     name: document.getElementById("nameNewAluno"),
     phone: document.getElementById("telefoneNewAluno"),
     lastName: document.getElementById("lastNameNewAluno"),
-    email: document.getElementById("emailNewAluno")
+    email: document.getElementById("emailNewAluno"),
+    confirmEmail: document.getElementById("emailConfirmNewAluno")
 }
 
 let endpointURL = "http://172.16.48.54:5000/api/alunos"
@@ -18,6 +19,14 @@ function showAlert(type, text) {
     wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + text + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
   
     alertPlaceholder.append(wrapper)
+
+    
+    setTimeout(function(){
+        wrapper.classList.add('invisivel');
+        setTimeout(function(){
+            alertPlaceholder.removeChild(wrapper);
+        }, 2000)    
+    }, 3000);
 }
 
 
@@ -70,10 +79,11 @@ function setCampos(aluno) {
     alunoFields.phone.value = aluno.phone
     alunoFields.lastName.value = aluno.last_name
     alunoFields.email.value = aluno.email
+    alunoFields.confirmEmail.value = aluno.confirmEmail
 }
 
 function getCampos() {
-    return {first_name: alunoFields.name.value, phone: alunoFields.phone.value, last_name: alunoFields.lastName.value, email: alunoFields.email.value}
+    return {first_name: alunoFields.name.value, phone: alunoFields.phone.value, last_name: alunoFields.lastName.value, email: alunoFields.email.value, confirmEmail: alunoFields.confirmEmail.value}
 }
 
 function clearCampos() {
@@ -81,6 +91,7 @@ function clearCampos() {
     alunoFields.phone.value = ""
     alunoFields.lastName.value = ""
     alunoFields.email.value = ""
+    alunoFields.confirmEmail.value = ""
 }
 
 
@@ -116,6 +127,12 @@ function validaAluno(){
         showAlert("danger","Digite um email valido! ")
         alunoFields.email.focus();
         return false;
+    }
+    else if(alunoFields.confirmEmail.value != alunoFields.email.value){
+        showAlert("danger","Email de confirmação errado! ")
+        alunoFields.confirmEmail.focus();
+        return false;
+
     }
      else if (alunoFields.phone.value == "") {
          showAlert("danger","Preencha com o seu telefone:");

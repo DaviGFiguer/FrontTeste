@@ -145,7 +145,7 @@ input:checked[type="checkbox"]:before{
     color: var(--cimalink);
 }
 .bi.bi-github{
-    padding-left: 130px;
+
     font-size:40px;
     
   
@@ -153,4 +153,18 @@ input:checked[type="checkbox"]:before{
 
 .bi.bi-linkedin{
     font-size:40px;
+}
+
+.item-esq{
+    float: left;
+}
+
+.item-dir{
+    float: right;
+}
+
+.invisivel{
+    opacity: 0;
+    transition: all 1s ease-out;    
+
 }
